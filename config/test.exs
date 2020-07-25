@@ -16,7 +16,10 @@ config :mango, Mango.Repo,
 # you can enable the server option below.
 config :mango, MangoWeb.Endpoint,
   http: [port: 4002],
-  server: false
+  server: true
+
+config :mango, :sql_sandbox, true
+config :wallaby, screenshot_on_failure: true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
