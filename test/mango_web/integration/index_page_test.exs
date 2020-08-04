@@ -5,6 +5,8 @@ defmodule MangoWeb.IndexPageTest do
   import Wallaby.Query, only: [css: 2, text_field: 1, button: 1]
 
   def index_title(title), do: css("h1", text: title)
+  def product_name(name), do: css(".product-name", text: name)
+  def product_price(price), do: css(".product-price", text: price)
 
   test "Has an index page", %{session: session} do
     session
@@ -23,5 +25,14 @@ defmodule MangoWeb.IndexPageTest do
     session
     |> visit("/")
     |> assert_has(index_title("Seasonal products"))
+
+    session
+    |> assert_has(product_name("Apple"))
+
+    session
+    |> assert_has(product_price("100"))
+
+    session
+    |> refute_has(product_name("Tomato"))
   end
 end
